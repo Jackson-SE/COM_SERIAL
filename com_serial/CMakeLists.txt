@@ -35,13 +35,13 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(com_serial com_serial.c )
+add_executable(com_serial com_serial com_serial.c inc/ssd1306.c )
 
 pico_set_program_name(com_serial "com_serial")
 pico_set_program_version(com_serial "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(com_serial 1)
+pico_enable_stdio_uart(com_serial 0)
 pico_enable_stdio_usb(com_serial 1)
 
 # Add the standard library to the build
@@ -55,6 +55,7 @@ target_include_directories(com_serial PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(com_serial 
+        hardware_i2c
         
         )
 
